@@ -8,6 +8,9 @@ class CrimeUtils:
     def find_unique_locations(self, df):
         return np.unique(df['location'])
 
+    def find_unique_locations(self, df):
+        return np.unique(df['crime_type'])
+
     def find_most_common_crime(self, df):
         crime_counts_zip = list(zip(df['crime_type'].value_counts().sort_index(ascending=True), np.unique(df['crime_type'])))
         crime_counts_zip.sort(key = lambda x: x[0])
@@ -30,3 +33,9 @@ class CrimeUtils:
         grouped = df.groupby(['location']).size().reset_index()
         grouped.columns = ["location", "count"]
         return grouped.loc[grouped["location"] == location, 'count'].iloc[0]
+
+    def most_common_crime_by_loc(self, df, location):
+        grouped = df.groupby(["location", "crime_type"]).count().reset_index()[['location', 'crime_type', 'time_reported']]
+        grouped.columns = ['location', 'crime_type', 'count']
+        location_df = grouped[grouped["location"] == location].reset_index()
+        return location_df.iloc[location_df['count'].idxmax()]['crime_type']

@@ -56,3 +56,4 @@ if __name__ == '__main__':
     print(cdp.find_crimes_per_day(df))
     print(cdp.find_crimes_per_week(df))
     print(cdp.crimes_by_location(df, "Duncan College"))
+    print(cdp.most_common_crime_by_loc(df, "Duncan College"))
