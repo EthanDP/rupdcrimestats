@@ -3,12 +3,85 @@
 {% block title %} RUPD Crime Stats {% endblock %}
 
 {% block content %}
-    <h1>RUPD Crime Stats</h1>
 
-    <ul>
-        <li><a> Crime Category </a></li>
-        <li><a> Time Category </a></li>
-        <li><a> Location Category </a></li>
-        <li><a> Police Status </a></li>
-    </ul>
+  <!--Header-->
+
+  <h1>RUPD Crime Stats</h1>
+
+  <!--Navigation Bar-->
+
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Filters</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center">
+
+          <!--The Incident Type Dropdown-->
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Incident Type
+            </a>
+            <ul class="dropdown-menu">
+              {% comment %}
+              {% for  in  %}{% endfor %}
+              {% endcomment %}
+              <li><a class="dropdown-item" href="#">Theft</a></li>
+              <li><a class="dropdown-item" href="#">Harassment</a></li>
+              <li><a class="dropdown-item" href="#">Assault</a></li>
+            </ul>
+          </li>
+
+          <!--The Location Type Dropdown-->
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Location
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#"></a></li>
+              <li><a class="dropdown-item" href="#">Fondren Library</a></li>
+              <li><a class="dropdown-item" href="#">Rice Stadium</a></li>
+            </ul>
+          </li>
+
+          <!--The Time Range Dropdown-->
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Time Range
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">In the Past 24 Hours</a></li>
+              <li><a class="dropdown-item" href="#">In the Past Week</a></li>
+              <li><a class="dropdown-item" href="#">In the Past Month</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Morning (5am - 12pm)</a></li>
+              <li><a class="dropdown-item" href="#">Afternoon (12pm - 5pm)</a></li>
+              <li><a class="dropdown-item" href="#">Evening (5pm - 10pm)</a></li>
+              <li><a class="dropdown-item" href="#">After Hours (10pm - 5am)</a></li>
+            </ul>
+          </li>
+
+          <!--The Police Status Dropdown-->
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Police Status
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Active</a></li>
+              <li><a class="dropdown-item" href="#">Criminal Arrest</a></li>
+              <li><a class="dropdown-item" href="#">Unfounded</a></li>
+            </ul>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
 {% endblock %}
