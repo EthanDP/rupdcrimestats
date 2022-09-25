@@ -47,13 +47,13 @@ ul {
 .map {
   height: 90%;
   width: 100%;
-  position:fixed; 
-  text-align:center;
+  position: fixed; 
+  text-align: center;
 }
 
 #map {
   width: 60%; 
   height: 80%; 
-  margin:0px auto; 
-  display:inline-block
+  margin: 0px auto; 
+  display: inline-block
 }

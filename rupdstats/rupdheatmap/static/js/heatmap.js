@@ -101,8 +101,6 @@ function initMap() {
     mapTypeId: 'satellite'
   });
 
-  
-  
   heatmap = new google.maps.visualization.HeatmapLayer({
     radius: 30,
     opacity: 1,
@@ -110,12 +108,6 @@ function initMap() {
     map: map,
   });
 
-}
-
-function getData_onLoad() {
-  $.ajax({
-    url: ""
-  })
 }
 
 window.initMap = initMap;
