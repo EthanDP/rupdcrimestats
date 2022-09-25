@@ -20,12 +20,9 @@
     
     <!--HeatMap polyfill/script-->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script type="module" src="../../static/js/heatmap.js"></script>
 
     <!--HeatMap (Google visualization) library-->
-    <script async
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDX54FmQhTG8CUBfBDQ9pDnMgXnJvKpwM&libraries=visualization&callback=initMap">
-    </script>
+    <script type="module" src="{% static 'js/heatmap.js' %}"></script>
 
   </head>
   

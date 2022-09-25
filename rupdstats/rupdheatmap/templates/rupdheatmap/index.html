@@ -92,27 +92,21 @@
     </div>
   </nav>
 
-  <div class="">
-    <div class="map">
-      <div id="floating-panel">
-        <button id="toggle-heatmap">Toggle Heatmap</button>
-        <button id="change-gradient">Change Gradient</button>
-        <button id="change-radius">Change Radius</button>
-        <button id="change-opacity">Change Opacity</button>
-      </div>
-      <div id="map"></div>
-  
-      <!-- 
-       The `defer` attribute causes the callback to execute after the full HTML
-       document has been parsed. For non-blocking uses, avoiding race conditions,
-       and consistent behavior across browsers, consider loading using Promises
-       with https://www.npmjs.com/package/@googlemaps/js-api-loader.
-      -->
-      <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=visualization&v=weekly"
-        defer
-      ></script>
-    </div>
+  <!-- Heat Map HTML -->
+  <div class="map">
+    
+    <div id="map"></div>
+
+    <!-- 
+      The `defer` attribute causes the callback to execute after the full HTML
+      document has been parsed. For non-blocking uses, avoiding race conditions,
+      and consistent behavior across browsers, consider loading using Promises
+      with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=visualization&v=weekly"
+      defer
+    ></script>
   </div>
 
 {% endblock %}
