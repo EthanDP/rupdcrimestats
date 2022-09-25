@@ -4,7 +4,6 @@ import pandas as pd
 import numpy as np
 from datetime import datetime
 import html
-from crime_utils import CrimeUtils
 
 class CrimeDataParser:
 
@@ -45,15 +44,3 @@ class CrimeDataParser:
 
         return df
     
-if __name__ == '__main__':
-    CRIME_DATA_URL = 'https://rupdadmin.rice.edu/crimelog/unskinned/'
-    cp = CrimeDataParser()
-    cdp = CrimeUtils()
-    data_html = cp.get_crime_data_html(CRIME_DATA_URL)
-    df = cp.create_df(data_html)
-    print(cdp.find_most_common_crime(df))
-    print(cdp.find_most_dangerous_place(df))
-    print(cdp.find_crimes_per_day(df))
-    print(cdp.find_crimes_per_week(df))
-    print(cdp.crimes_by_location(df, "Duncan College"))
-    print(cdp.most_common_crime_by_loc(df, "Duncan College"))
