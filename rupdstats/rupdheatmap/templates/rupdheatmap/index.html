@@ -6,17 +6,17 @@
 
   <!--Header-->
 
-  <h1>RUPD Crime Stats</h1>
+  <h1 class="page-title">RUPD Crime Stats</h1>
 
   <!--Navigation Bar-->
 
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid justify-content-center">
-      <a class="navbar-brand" href="#">Filters</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+        <a class="navbar-brand" href="#">Filters</a>
         <ul class="navbar-nav">
 
           <!--The Incident Type Dropdown-->
@@ -29,9 +29,9 @@
               {% comment %}
               {% for  in  %}{% endfor %}
               {% endcomment %}
-              <li><a class="dropdown-item" href="#">Theft</a></li>
-              <li><a class="dropdown-item" href="#">Harassment</a></li>
-              <li><a class="dropdown-item" href="#">Assault</a></li>
+              <li><a class="dropdown-item" href="/rupdheatmap/theft">Theft</a></li>
+              <li><a class="dropdown-item" href="/rupdheatmap/harassment">Harassment</a></li>
+              <li><a class="dropdown-item" href="/rupdheatmap/assault">Assault</a></li>
             </ul>
           </li>
 
@@ -42,8 +42,8 @@
               Location
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Residential Colleges</a></li>
-              <li><a class="dropdown-item" href="#">Academic Buildings</a></li>
+              <li><a class="dropdown-item" href="/rupdheatmap/residential">Residential Colleges</a></li>
+              <li><a class="dropdown-item" href="/rupdheatmap/academic">Academic Buildings</a></li>
             </ul>
           </li>
 
@@ -54,14 +54,14 @@
               Time Range
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">In the Past 24 Hours</a></li>
-              <li><a class="dropdown-item" href="#">In the Past Week</a></li>
-              <li><a class="dropdown-item" href="#">In the Past Month</a></li>
+              <li><a class="dropdown-item" href="/rupdheatmap/last_day">In the Past 24 Hours</a></li>
+              <li><a class="dropdown-item" href="/rupdheatmap/last_week">In the Past Week</a></li>
+              <li><a class="dropdown-item" href="/rupdheatmap/last_month">In the Past Month</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Morning (5am - 12pm)</a></li>
-              <li><a class="dropdown-item" href="#">Afternoon (12pm - 5pm)</a></li>
-              <li><a class="dropdown-item" href="#">Evening (5pm - 10pm)</a></li>
-              <li><a class="dropdown-item" href="#">After Hours (10pm - 5am)</a></li>
+              <li><a class="dropdown-item" href="/rupdheatmap/morning">Morning (5am - 12pm)</a></li>
+              <li><a class="dropdown-item" href="/rupdheatmap/afternoon">Afternoon (12pm - 5pm)</a></li>
+              <li><a class="dropdown-item" href="/rupdheatmap/evening">Evening (5pm - 10pm)</a></li>
+              <li><a class="dropdown-item" href="/rupdheatmap/night">After Hours (10pm - 5am)</a></li>
             </ul>
           </li>
 
@@ -72,15 +72,47 @@
               Police Status
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Active</a></li>
-              <li><a class="dropdown-item" href="#">Criminal Arrest</a></li>
-              <li><a class="dropdown-item" href="#">Unfounded</a></li>
+              <li><a class="dropdown-item" href="/rupdheatmap/active">Active</a></li>
+              <li><a class="dropdown-item" href="/rupdheatmap/assault">Inactive</a></li>
+              <li><a class="dropdown-item" href="/rupdheatmap/arrest">Criminal Arrest</a></li>
+              <li><a class="dropdown-item" href="/rupdheatmap/unfounded">Unfounded</a></li>
             </ul>
           </li>
+
+          <!-- Filter Reset Button -->
           
+          <li class="nav-item">
+            <a class="nav-link" href="/rupdheatmap" role="button" aria-expanded="false">
+              Reset
+            </a>
+          </li>
+
         </ul>
       </div>
     </div>
   </nav>
+
+  <div class="">
+    <div class="map">
+      <div id="floating-panel">
+        <button id="toggle-heatmap">Toggle Heatmap</button>
+        <button id="change-gradient">Change Gradient</button>
+        <button id="change-radius">Change Radius</button>
+        <button id="change-opacity">Change Opacity</button>
+      </div>
+      <div id="map"></div>
+  
+      <!-- 
+       The `defer` attribute causes the callback to execute after the full HTML
+       document has been parsed. For non-blocking uses, avoiding race conditions,
+       and consistent behavior across browsers, consider loading using Promises
+       with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+      -->
+      <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=visualization&v=weekly"
+        defer
+      ></script>
+    </div>
+  </div>
 
 {% endblock %}
