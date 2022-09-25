@@ -5,8 +5,13 @@
 .page-title {
     display: flex;
     justify-content: center;
-    padding-bottom: 16px;
-    padding-top: 30px;
+    padding-bottom: 12px;
+    padding-top: 26px;
+}
+
+html,
+body {
+  height: 100%;
 }
 
 ul {
@@ -40,9 +45,15 @@ ul {
 }
 
 .map {
-  height: 80px;
+  height: 90%;
+  width: 100%;
+  position:fixed; 
+  text-align:center;
 }
 
 #map {
-    height: 100%
+  width: 60%; 
+  height: 80%; 
+  margin:0px auto; 
+  display:inline-block
 }

@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from datetime import datetime
+from flask import Flask, render_template
 
 class CrimeUtils:
     def __init__(self) -> None:
@@ -29,6 +30,7 @@ class CrimeUtils:
     def find_crimes_per_week(self, df):
         return round(self.find_crimes_per_day(df) * 7, 1)
 
+    @app.route('/')
     def crimes_by_location(self, df, location):
         grouped = df.groupby(['location']).size().reset_index()
         grouped.columns = ["location", "count"]

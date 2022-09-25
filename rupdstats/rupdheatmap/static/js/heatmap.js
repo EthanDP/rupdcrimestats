@@ -4,7 +4,7 @@ function getHeatmapData() {
   // {location: new google.maps.LatLng(37.785, -122.437), weight: 2},
   // {location: new google.maps.LatLng(37.785, -122.435), weight: 3},
   // 'Entrance 1'
-  {location: new google.maps.LatLng(29.720595860657813, -95.39389445408264), weight: 1},
+  {location: new google.maps.LatLng(29.720595860657813, -95.39389445408264), weight: 10},
   // 'Entrance 2'
   {location: new google.maps.LatLng(29.71862984400406, -95.39552578841001), weight: 1},
   // 'Entrance 3'
@@ -50,7 +50,7 @@ function getHeatmapData() {
   // 'College Way'
   {location: new google.maps.LatLng(29.716353010920027, -95.40204065289173), weight: 1},
   // 'Duncan College'
-  {location: new google.maps.LatLng(29.72171540729127, -95.39843757114714), weight: 1},
+  {location: new google.maps.LatLng(29.72171540729127, -95.39843757114714), weight: 4},
   // 'Facilities & Engineering'
   {location: new google.maps.LatLng(29.722657239455113, -95.39990800693391), weight: 1},
   // 'Fondren Library'
@@ -97,17 +97,25 @@ function initMap() {
   var riceUniversity = new google.maps.LatLng(29.717154, -95.404182);
   map = new google.maps.Map(document.getElementById('map'), {
     center: riceUniversity,
-    zoom: 13,
+    zoom: 15,
     mapTypeId: 'satellite'
   });
 
   
   
   heatmap = new google.maps.visualization.HeatmapLayer({
+    radius: 30,
+    opacity: 1,
     data: getHeatmapData(),
     map: map,
   });
 
+}
+
+function getData_onLoad() {
+  $.ajax({
+    url: ""
+  })
 }
 
 window.initMap = initMap;

@@ -94,7 +94,6 @@
 
   <!-- Heat Map HTML -->
   <div class="map">
-    
     <div id="map"></div>
 
     <!-- 
@@ -103,10 +102,19 @@
       and consistent behavior across browsers, consider loading using Promises
       with https://www.npmjs.com/package/@googlemaps/js-api-loader.
     -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=visualization&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDX54FmQhTG8CUBfBDQ9pDnMgXnJvKpwM&callback=initMap&libraries=visualization&v=weekly"
       defer
     ></script>
   </div>
+
+  <!-- Infographic charts -->
+
+  {% comment %} <div class = "infographics">
+    <div id = "crimes">
+
+    </div>
+  </div>  {% endcomment %}
 
 {% endblock %}
