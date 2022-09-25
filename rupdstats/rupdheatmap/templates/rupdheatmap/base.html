@@ -9,6 +9,7 @@
     <title>{% block title %}{% endblock %}</title>
 
     <link rel="stylesheet" href=" {% static 'css/style.css' %} ">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,6 +18,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     
+    <!--HeatMap polyfill/script-->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script type="module" src="../../static/js/heatmap.js"></script>
+
+    <!--HeatMap (Google visualization) library-->
+    <script async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDX54FmQhTG8CUBfBDQ9pDnMgXnJvKpwM&libraries=visualization&callback=initMap">
+    </script>
+
   </head>
   
   <body>
