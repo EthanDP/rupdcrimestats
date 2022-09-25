@@ -1,4 +1,6 @@
 {% extends "rupdheatmap/base.html" %}
+{% load static %}
+
 
 {% block title %} RUPD Crime Stats {% endblock %}
 
@@ -87,6 +89,12 @@
             </a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link" href="/rupdheatmap/infographics" role="button" aria-expanded="false">
+              Infographics
+            </a>
+          </li>
+
         </ul>
       </div>
     </div>
@@ -102,19 +110,13 @@
       and consistent behavior across browsers, consider loading using Promises
       with https://www.npmjs.com/package/@googlemaps/js-api-loader.
     -->
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDX54FmQhTG8CUBfBDQ9pDnMgXnJvKpwM&callback=initMap&libraries=visualization&v=weekly"
       defer
-    ></script>
+    >
+
+  </script>
   </div>
 
-  <!-- Infographic charts -->
-
-  {% comment %} <div class = "infographics">
-    <div id = "crimes">
-
-    </div>
-  </div>  {% endcomment %}
 
 {% endblock %}

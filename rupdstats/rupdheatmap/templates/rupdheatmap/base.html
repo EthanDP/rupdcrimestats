@@ -22,7 +22,119 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <!--HeatMap (Google visualization) library-->
-    <script type="module" src="{% static 'js/heatmap.js' %}"></script>
+    {% comment %} <script type="module" src="{% static 'js/heatmap.js' %}"></script> {% endcomment %}
+    <script>
+      function getHeatmapData() {
+        weights=JSON.parse("{{weights|escapejs}}")
+        console.log(weights)
+        return [
+        // 'Entrance 1'
+        weights.entrance1 ? {location: new google.maps.LatLng(29.720595860657813, -95.39389445408264), weight: weights.entrance1} : null,
+        // 'Entrance 2'
+        weights.entrance2 ? {location: new google.maps.LatLng(29.71862984400406, -95.39552578841001), weight: weights.entrance2} : null,
+        // 'Entrance 3'
+        weights.entrance3 ? {location: new google.maps.LatLng(29.716058893620623, -95.39743392213153), weight: weights.entrance3} : null,
+        // 'Entrance 4'
+        weights.entrance4 ? {location: new google.maps.LatLng(29.71443265606742, -95.39882489811542), weight: weights.entrance4} : null,
+        // 'Entrance 5'
+        weights.entrance5 ? {location: new google.maps.LatLng(29.712790903816188, -95.40014454199758), weight: weights.entrance5} : null,
+        // 'Entrance 8'
+        weights.entrance8 ? {location: new google.maps.LatLng(29.71347598818237, -95.4065878411558), weight: weights.entrance8} : null,
+        // 'Entrance 16'
+        weights.entrance16 ? {location: new google.maps.LatLng(29.717904975140854, -95.41049929201775), weight: weights.entrance16} : null,
+        // 'Entrance 17'
+        weights.entrance17 ? {location: new google.maps.LatLng(29.718425482416805, -95.40906929928423), weight: weights.entrance17} : null,
+        // 'Entrance 18'
+        weights.entrance18 ? {location: new google.maps.LatLng(29.71917427763413, -95.40723974965725), weight: weights.entrance18} : null,
+        // 'Entrance 20'
+        weights.entrance20 ? {location: new google.maps.LatLng(29.720388775068166, -95.40412741236945), weight: weights.entrance20} : null,
+        // 'Entrance 21'
+        weights.entrance21 ? {location: new google.maps.LatLng(29.721265395668, -95.40177213010296), weight: weights.entrance21} : null,
+        // 'Entrance 22'
+        weights.entrance22 ? {location: new google.maps.LatLng(29.721466286806955, -95.40116228026072), weight: weights.entrance22} : null,
+        // 'Entrance 23'
+        weights.entrance23 ? {location: new google.maps.LatLng(29.722215059327716, -95.39935376003892), weight: weights.entrance23} : null,
+        // 'Entrance 25'
+        weights.entrance25 ? {location: new google.maps.LatLng(29.721922856080997, -95.39614679091575), weight: weights.entrance25} : null,
+        // 'Entrance 27'
+        weights.entrance27 ? {location: new google.maps.LatLng(29.72134757845444, -95.3950112084509), weight: weights.entrance27} : null,
+        // 'Academic Quad'
+        weights.academicquad ? {location: new google.maps.LatLng(29.718790, -95.398483), weight: weights.academicquad} : null,
+        // 'Allen Center'
+        weights.allencenter ? {location: new google.maps.LatLng(29.717522, -95.398125), weight: weights.allencenter} : null,
+        // 'Alumni Drive'
+        weights.alumnidrive ? {location: new google.maps.LatLng(29.717167, -95.402527), weight: weights.alumnidrive} : null,
+        // 'BRC'
+        weights.brc ? {location: new google.maps.LatLng(29.711205, -95.401981), weight: weights.brc} : null,
+        // 'Baker College'
+        weights.bakercollege ? {location: new google.maps.LatLng(29.717121134876557, -95.3992434809301), weight: weights.bakercollege} : null,
+        // 'Brown College'
+        weights.browncollege ? {location: new google.maps.LatLng(29.721467723169113, -95.39632537316551), weight: weights.browncollege} : null,
+        // 'Cambridge Building'
+        weights.cambridgebuilding ? {location: new google.maps.LatLng(29.71692856611316, -95.39767427016585), weight: weights.cambridgebuilding} : null,
+        // 'College Way'
+        weights.collegeway ? {location: new google.maps.LatLng(29.716353010920027, -95.40204065289173), weight: weights.collegeway} : null,
+        // 'Duncan College'
+        weights.duncancollege ? {location: new google.maps.LatLng(29.72171540729127, -95.39843757114714), weight: weights.duncancollege} : null,
+        // 'Fondren Library'
+        weights.fondrenlibrary ? {location: new google.maps.LatLng(29.718294978334633, -95.40018131336284), weight: weights.fondrenlibrary} : null,
+        // 'Greenbriar Lot'
+        weights.greenbriarlot ? {location: new google.maps.LatLng(29.715981935590918, -95.41218831719355), weight: weights.greenbriarlot} : null,
+        // 'Hanszen College'
+        weights.hanszencollege ? {location: new google.maps.LatLng(29.71591247679036, -95.40023290347972), weight: weights.hanszencollege} : null,
+        // 'Jones College'
+        weights.jonescollege ? {location: new google.maps.LatLng(29.721606482816366, -95.39678197175353), weight: weights.jonescollege} : null,
+        // 'Lovett College'
+        weights.lovettcollege ? {location: new google.maps.LatLng(29.71673354090306, -95.39806260484436), weight: weights.lovettcollege} : null,
+        // 'Martel College'
+        weights.martelcollege ? {location: new google.maps.LatLng(29.721793078529906, -95.39769370933875), weight: weights.martelcollege} : null,
+        // 'McMurtry College'
+        weights.mcmurtrycollege ? {location: new google.maps.LatLng(29.720450238743076, -95.39773539109628), weight: weights.mcmurtrycollege} : null,
+        // 'Rec Center'
+        weights.reccenter ? {location: new google.maps.LatLng(29.71835049688027, -95.40354656883738), weight: weights.reccenter} : null,
+        // 'Rice Graduate Apartments'
+        weights.ricegraduateapartments ? {location: new google.maps.LatLng(29.726292218963764, -95.39863645296526), weight: weights.ricegraduateapartments} : null,
+        // 'Rice Memorial Center'
+        weights.ricememorialcenter ? {location: new google.maps.LatLng(29.71930860420297, -95.40183484503329), weight: weights.ricememorialcenter} : null,
+        // 'Rice Stadium'
+        weights.ricestadium ? {location: new google.maps.LatLng(29.716408929076717, -95.40933901620431), weight: weights.ricestadium} : null,
+        // 'Sid Richardson College'
+        weights.sidrichardsoncollege ? {location: new google.maps.LatLng(29.7151337695249, -95.39904448748513), weight: weights.sidrichardsoncollege} : null,
+        // 'South Colleges Lot'
+        weights.southcollegeslot ? {location: new google.maps.LatLng(29.715410610090363, -95.39815013467721), weight: weights.southcollegeslot} : null,
+        // 'Tudor Field House'
+        weights.tudorfieldhouse ? {location: new google.maps.LatLng(29.715780019583505, -95.40376549952695), weight: weights.tudorfieldhouse} : null,
+        // 'West Lot'
+        weights.westlot ? {location: new google.maps.LatLng(29.716573383323144, -95.4067610005843), weight: weights.westlot} : null,
+        // 'Wiess College'
+        weights.wiesscollege ? {location: new google.maps.LatLng(29.71473244357511, -95.40086348493536), weight: weights.wiesscollege} : null,
+        // 'Will Rice College'
+        weights.willricecollege ? {location: new google.maps.LatLng(29.716430931301183, -95.39869632364194), weight: weights.willricecollege} : null,
+      ];
+      }
+      
+      let map;
+      let heatmap;
+      
+      function initMap() {
+        var riceUniversity = new google.maps.LatLng(29.717154, -95.404182);
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: riceUniversity,
+          zoom: 15,
+          mapTypeId: 'satellite'
+        });
+      
+        heatmap = new google.maps.visualization.HeatmapLayer({
+          radius: 30,
+          opacity: 1,
+          data: getHeatmapData(),
+          map: map,
+        });
+      
+      }
+      
+      window.initMap = initMap;
+    </script>
 
   </head>
   

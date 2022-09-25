@@ -47,7 +47,7 @@ ul {
 .map {
   height: 90%;
   width: 100%;
-  position: fixed; 
+  position: fixed;
   text-align: center;
 }
 
@@ -56,4 +56,14 @@ ul {
   height: 80%; 
   margin: 0px auto; 
   display: inline-block
+}
+
+.infographics{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+img {
+  height: 400px;
+  width: auto;
 }

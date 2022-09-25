@@ -1,0 +1,16 @@
+{% extends "rupdheatmap/base.html" %}
+{% load static %}
+
+{% block title %} RUPD Crime Stats {% endblock %}
+
+{% block content %}
+    <h1 class="page-title">Infographics</h1>
+    <!-- Infographic charts -->
+
+    <div class = "infographics">
+        <img src="{% static '/media/pie.png' %}"/>
+        <img src="{% static '/media/output.png' %}"/>
+    </div> 
+
+    
+{% endblock %}

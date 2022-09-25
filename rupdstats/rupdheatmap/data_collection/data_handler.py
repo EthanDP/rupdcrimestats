@@ -20,7 +20,7 @@ class CrimeDataParser:
     
     def create_df(self, crime_html_data):
         case_number = [td.text for td in crime_html_data.find_all('td',{'class':'case_number'})]
-        crime_type = [self.remove_parentheses(td.text).strip().replace("  ", " ") for td in crime_html_data.find_all('td',{'class':'classification'})]
+        crime_type = [self.remove_parentheses(td.text).strip().replace("  ", " ").lower() for td in crime_html_data.find_all('td',{'class':'classification'})]
         location = [html.unescape(td.text).replace("#","") for td in crime_html_data.find_all('td',{'class':'location'})]
         time_reported = [td.text for td in crime_html_data.find_all('td',{'class':'datetime_reported'})]
         status = [td.text for td in crime_html_data.find_all('td',{'class':'disposition'})]
