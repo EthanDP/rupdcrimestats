@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 import numpy as np
-from datetime import datetime
+from datetime import datetime, time
 from data_collection.data_handler import CrimeDataParser
 
 residential_colleges = [
@@ -65,6 +65,31 @@ class CrimeUtils:
             return df[~df['location'].isin(residential_colleges)]
         else:
             return df
+    
+    def filter_times(self, df, cfg='none'):
+        if cfg == "Morning":
+            return df[(df["time_reported"].dt.time >= time(hour=5, minute=00)) & (df["time_reported"].dt.time <= time(hour=12, minute=00))]
+        elif cfg == "Afternoon":
+            return df[(df["time_reported"].dt.time >= time(hour=12, minute=00)) & ((df["time_reported"].dt.time <= time(hour=17, minute=00)))]
+        elif cfg == "Evening":
+            return df[(df["time_reported"].dt.time >= time(hour=17, minute=00)) & ((df["time_reported"].dt.time <= time(hour=22, minute=00)))]
+        elif cfg == "After_Hours":
+            return df[(df["time_reported"].dt.time >= time(hour=22, minute=00)) & ((df["time_reported"].dt.time <= time(hour=5, minute=00)))]
+        else:
+            return df
+    
+    def filter_status(self, df, cfg='none'):
+        if cfg == "Active":
+            return df[df["status"] == 'Active']
+        elif cfg == "Arrested":
+            return df[df["status"] == 'Criminal ArrestCounty Citiation']
+        elif cfg == "Unfounded":
+            return df[df["status"] == 'Unfounded']
+        elif cfg == "Inactive":
+            return df[df["status"] == 'Inactive']
+        else:
+            return df
+
 
 if __name__ == '__main__':
     CRIME_DATA_URL = 'https://rupdadmin.rice.edu/crimelog/unskinned/'
@@ -78,4 +103,6 @@ if __name__ == '__main__':
     # print(cdp.find_crimes_per_week(df))
     # print(cdp.crimes_by_location(df, "Duncan College"))
     # print(cdp.most_common_crime_by_loc(df, "Duncan College"))
-    print(cdp.filter_locations(df, 'rc'))
+    # print(cdp.filter_locations(df, 'rc'))
+    # print(cdp.filter_times(df,'Afternoon'))
+    print(cdp.filter_status(df,'Arrested'))

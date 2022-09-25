@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 import numpy as np
+import re
 from datetime import datetime
 import html
 
@@ -13,10 +14,13 @@ class CrimeDataParser:
     def get_crime_data_html(self, url):
         crime_log_request = requests.get(url)
         return BeautifulSoup(crime_log_request.text, 'lxml')
+
+    def remove_parentheses(self, string):
+        return re.sub(r'\([^)]*\)', '', string)
     
     def create_df(self, crime_html_data):
         case_number = [td.text for td in crime_html_data.find_all('td',{'class':'case_number'})]
-        crime_type = [td.text for td in crime_html_data.find_all('td',{'class':'classification'})]
+        crime_type = [self.remove_parentheses(td.text).replace(" ", "") for td in crime_html_data.find_all('td',{'class':'classification'})]
         location = [html.unescape(td.text) for td in crime_html_data.find_all('td',{'class':'location'})]
         time_reported = [td.text for td in crime_html_data.find_all('td',{'class':'datetime_reported'})]
         status = [td.text for td in crime_html_data.find_all('td',{'class':'disposition'})]
@@ -25,7 +29,8 @@ class CrimeDataParser:
             'case_number': case_number,
             'crime_type': crime_type,
             'location': location,
-            'time_reported': time_reported
+            'time_reported': time_reported,
+            'status': status
         }
 
         df = pd.DataFrame(data = data, columns = data.keys())
