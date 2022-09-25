@@ -1,6 +1,8 @@
 import os
 import pandas as pd
+import seaborn as sns
 import numpy as np
+import matplotlib.pyplot as plt
 from datetime import datetime, time
 from data_collection.data_handler import CrimeDataParser
 
@@ -89,6 +91,42 @@ class CrimeUtils:
             return df[df["status"] == 'Inactive']
         else:
             return df
+    
+    def filter_crime_types(self, df, crime_type=""):
+        try:
+            return df[df["crime_type"] == crime_type]
+        except:
+            return df
+    
+    def create_time_histogram(self, df):
+        grouped = df.groupby([df["time_reported"].dt.hour]).count()[["status"]].reset_index()
+        plot = sns.barplot(data=grouped, x="time_reported", y="status")
+        plot.set(title="Crime Incidents by Hour",xlabel="Hour", ylabel="Incidents Reported")
+        fig = plot.get_figure()
+        fig.savefig('output.png')
+    
+    def create_crime_type_piechart(self, df):
+        crime_counts_zip = list(zip(df['crime_type'].value_counts().sort_index(ascending=True), np.unique(df['crime_type'])))
+        crime_counts_zip.sort(key = lambda x: x[0])
+        crime_type_ascending = [i[1] for i in crime_counts_zip]
+        crime_counts = [i[0] for i in crime_counts_zip]
+        crime_percentages = [count / sum(crime_counts) for count in crime_counts]
+
+        title_styles = {
+            'fontsize': 24,
+            'fontweight':3
+        }
+
+        label_styles = {
+            'fontsize': 18,
+            'fontweight':3
+        }
+
+        plt.figure(figsize=(21,14))
+        plt.title('Types of Crimes Committed on Rice U Campus', fontdict = title_styles, y=1.1)
+        plt.pie(crime_percentages,labels=crime_type_ascending,shadow=False, textprops=label_styles)
+        plt.axis('equal')
+        plt.savefig('pie.png')
 
 
 if __name__ == '__main__':
@@ -105,4 +143,7 @@ if __name__ == '__main__':
     # print(cdp.most_common_crime_by_loc(df, "Duncan College"))
     # print(cdp.filter_locations(df, 'rc'))
     # print(cdp.filter_times(df,'Afternoon'))
-    print(cdp.filter_status(df,'Arrested'))
+    # print(cdp.filter_status(df,''))
+    # print(cdp.find_unique_crimes(df))
+    # print(cdp.filter_crime_types(df, 'Assault'))
+    cdp.create_crime_type_piechart(df)
